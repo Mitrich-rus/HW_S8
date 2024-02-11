@@ -34,9 +34,8 @@ def get_user_data():
             phone_number = int(input('Введите номер телефона пользователя: '))
             if len(str(phone_number)) < 11:
                 raise PhoneError('Неверная длина номера!')
-            validation = str(input(
-                f'Введите "y" для подтверждения.\n'
-                f'Имя: {first_name}; Фамилия: {last_name}; Телефон: {phone_number}\n'))
+            validation = input(f'Введите "y" для подтверждения.\n'
+                               f'Имя: {first_name}; Фамилия: {last_name}; Телефон: {phone_number}\n')
             if validation == "y":
                 flag = True
         except ValueError:
@@ -83,7 +82,7 @@ def write_file(file_name):
 
 
 def copy_data(file_name, copy_file):  # функция копирования
-    global row
+    row = 0
     source = read_file(file_name)
     result = read_file(copy_file)
     flag = False
@@ -92,7 +91,7 @@ def copy_data(file_name, copy_file):  # функция копирования
             row = int(input(f'Введите номер строки для копии от 1 до {len(source)}\n')) - 1
             if 0 < row > len(source) - 1:
                 raise RowError('Строка вне диапазона!')
-            validation = str(input('Введите "y" для подтверждения.\n'))
+            validation = input('Введите "y" для подтверждения.\n')
             if validation == "y":
                 flag = True
         except ValueError:
